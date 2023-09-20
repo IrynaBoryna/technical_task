@@ -1,8 +1,8 @@
 import css from './catalog.module.css';
 import { OneCar } from '../oneCar/oneCar';
-import PropTypes from 'prop-types';
 import { Seachbar } from '../searchbar/searchbar';
 import { Loader } from 'components/loader';
+import { nanoid } from 'nanoid';
 
 export const Catalog = ({
   addDeletFavorite,
@@ -10,34 +10,40 @@ export const Catalog = ({
   onLoadMore,
   error,
   isLoading,
+  queryBrand,
+  queryPrice,
+  queryMileFrom,
+  queryMileTo,
 }) => {
-  // const onSabmitQuery = ({
-  // queryBrand,
-  // queryPrice,
-  // queryMileFrom,
-  // queryMileTo,
-  // }) => {
 
-  // setQueryBrand(queryBrand);
-  // setQueryPrice(queryPrice);
-  // setQueryMileFrom(queryMileFrom);
-  // setQueryMileTo(queryMileTo);
-  // setCars([]);
-  // };
+  let queryArray = cars;
+
+  const onSabmitQuery = () => {
+    if (queryBrand !== '') {
+      queryArray = cars.filter(car => car.make === queryBrand);
+    } else if (queryPrice !== '') {
+      queryArray = cars.filter(car => car.rentalPrice <= queryPrice)
+    } else if (queryMileFrom !== '' || queryMileTo !== '') {
+      queryArray = cars.filter(
+        car => car.mileage <= queryMileTo && car.mileage >= queryMileFrom)
+    } else queryArray = cars;
+    return queryArray;
+  }
+
 
   return (
     <div className={css.container}>
       <Seachbar
-      // onSubmit={({ queryBrand, queryPrice, queryMileFrom, queryMileTo }) =>
-      //   onSabmitQuery({ queryBrand, queryPrice, queryMileFrom, queryMileTo })
-      // }
+        onSubmit={({ queryBrand, queryPrice, queryMileFrom, queryMileTo }) =>
+          onSabmitQuery({ queryBrand, queryPrice, queryMileFrom, queryMileTo })
+        }
       />
       {error && <p>щось пішло не так...</p>}
       {isLoading ? (
         <Loader />
       ) : (
         <ul className={css.catalog}>
-          {cars.map(
+          {queryArray.map(
             ({
               id,
               img,
@@ -57,6 +63,7 @@ export const Catalog = ({
               favorite,
             }) => (
               <OneCar
+                key={nanoid()}
                 id={id}
                 img={img}
                 make={make}
@@ -72,7 +79,6 @@ export const Catalog = ({
                 description={description}
                 rentalConditions={rentalConditions}
                 engineSize={engineSize}
-                // onShow={() => setShowModal(!showModal)}
                 onClick={() => addDeletFavorite(id)}
                 favorite={favorite}
               />
@@ -90,16 +96,3 @@ export const Catalog = ({
   );
 };
 
-Catalog.prototype = {
-  //   tags: PropTypes.string,
-  //   webformatURL: PropTypes.string,
-  id: PropTypes.number,
-  images: PropTypes.array,
-  showModal: PropTypes.bool,
-};
-
-// const [queryBrand, setQueryBrand] = useState('');
-// const [queryPrice, setQueryPrice] = useState('');
-// const [queryMileFrom, setQueryMileFrom] = useState('');
-// const [queryMileTo, setQueryMileTo] = useState('');
-// const [showModal, setShowModal] = useState(false);

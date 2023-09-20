@@ -1,20 +1,12 @@
-.card {
-   /* position: relative; */
-   /* display: flex; 
-   flex-wrap: wrap; */
-     /* width: calc((100% - 29px * 3) / 4);  */
-     /* gap: 29px; */
-  }
-
 .card__box {
- position: relative;
-display: flex;
-width: 274px;
-height: 438px;
-flex-direction: column;
+  position: relative;
+  display: flex;
+  width: 274px;
+  height: 438px;
+  flex-direction: column;
 
-align-items: flex-end;
-gap: 14px;
+  align-items: flex-end;
+  gap: 14px;
 }
 
 .card__img {
@@ -23,42 +15,42 @@ gap: 14px;
   height: 274px;
   object-fit: cover;
   border-radius: 12px;
-  box-shadow:var(--box-shadow-img);
+  box-shadow: var(--box-shadow-img);
 }
 
 .title__box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 .card__title {
   display: flex;
   gap: 3px;
 }
 .card__model {
-    color: #3470FF;
+  color: #3470ff;
 }
 
 .card__info {
-    display: flex;
-    flex-wrap: wrap;
-    height: 60px;
-    gap: 2px;
-  color: rgba(18, 20, 23, 0.50);
-font-size: 12px;
-font-weight: 400;
-line-height: 18px;   
+  display: flex;
+  flex-wrap: wrap;
+  height: 60px;
+  gap: 2px;
+  color: rgba(18, 20, 23, 0.5);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
 }
 .card__button {
-height: 44px;
-padding: 12px 99px;
+  height: 44px;
+  padding: 12px 99px;
 }
 
 .Heart {
-   position: absolute; 
-    z-index: 30;
+  position: absolute;
+  z-index: 30;
   top: 7px;
   right: 7px;
   margin: 0;
@@ -70,8 +62,8 @@ padding: 12px 99px;
 }
 
 .HeartFavor {
-   position: absolute; 
-    z-index: 30;
+  position: absolute;
+  z-index: 30;
   top: 7px;
   right: 7px;
   margin: 0;
@@ -79,7 +71,7 @@ padding: 12px 99px;
   height: 24px;
   padding: 0;
   border: none;
-  
-  fill: #3470FF;
+
+  fill: #3470ff;
   /* background-color: transparent; */
 }

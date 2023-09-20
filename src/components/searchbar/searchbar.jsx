@@ -1,32 +1,8 @@
 import { useState } from 'react';
 import css from '../searchbar/searchbar.module.css';
+import { price, options } from '../options';
+import { nanoid } from 'nanoid';
 
-
-const options = [
-  'Buick',
-  'Volvo',
-  'HUMMER',
-  'Subaru',
-  'Mitsubishi',
-  'Nissan',
-  'Lincoln',
-  'GMC',
-  'Hyundai',
-  'MINI',
-  'Bentley',
-  'Mercedes-Benz',
-  'Aston Martin',
-  'Pontiac',
-  'Lamborghini',
-  'Audi',
-  'BMW',
-  'Chevrolet',
-  'Mercedes-Benz',
-  'Chrysler',
-  'Kia',
-  'Land'
-];
-const price = ['10', '20', '30', '40','50','60','70','80','90','100','110','120','130','140','150','160','170','180'];
 export const Seachbar = ({ onSubmit }) => {
   const [queryBrand, setQueryBrand] = useState('');
   const [queryPrice, setQueryPrice] = useState('');
@@ -62,7 +38,6 @@ export const Seachbar = ({ onSubmit }) => {
       return alert('Enter your request');
     }
 
-    console.log(queryPrice);
     onSubmit({ queryBrand, queryPrice, queryMileFrom, queryMileTo });
     setQueryBrand('');
     setQueryPrice('');
@@ -77,15 +52,14 @@ export const Seachbar = ({ onSubmit }) => {
         <input
           className={css.input__brand}
           list="options"
-          // type="text"
           placeholder="Enter the text"
           name="queryBrand"
           value={queryBrand}
           onChange={handleInputChange}
         />
-        <datalist id="options">
+        <datalist id="options" className={css.input__brandData}>
           {options.map(op => (
-            <option>{op}</option>
+            <option key={nanoid()}>{op}</option>
           ))}
         </datalist>
       </label>
@@ -94,7 +68,6 @@ export const Seachbar = ({ onSubmit }) => {
         <input
           className={css.input__price}
           list="price"
-          // type="text"
           placeholder="$"
           name="queryPrice"
           value={queryPrice}
@@ -102,18 +75,10 @@ export const Seachbar = ({ onSubmit }) => {
         />
         <datalist id="price">
           {price.map(price => (
-            <option>{price}</option>
+            <option key={nanoid()}>{price}</option>
           ))}
         </datalist>
-        {/* <span className={css.span__input}>To $</span> */}
-       
-          {/* renderValue={() => (
-            <span>
-              <strong>To</strong>
-              {' ' + queryPrice}
-              <strong>$</strong>
-            </span>
-          )} */}
+        <span className={css.span__input}>To</span>
       </label>
       <label className={css.label}>
         Car mileage/km
@@ -123,15 +88,9 @@ export const Seachbar = ({ onSubmit }) => {
             type="number"
             name="queryMileFrom"
             inputmode="numeric"
-            pattern="\d"
+            pattern="^[0-9]*[.,][0-9]+$"
             value={queryMileFrom}
             onChange={handleInputChange}
-            // rendervalue={() => (
-            //   <span>
-            //     <strong>From</strong>
-            //     {' ' + queryMileFrom / 1000}
-            //   </span>
-            // )}
           />
           <span className={css.span__input}>From</span>
           <div className={css.label}>
@@ -139,6 +98,7 @@ export const Seachbar = ({ onSubmit }) => {
               className={css.input__mileTo}
               type="number"
               name="queryMileTo"
+              pattern="^[0-9]*[.,][0-9]+$"
               value={queryMileTo}
               onChange={handleInputChange}
             />
@@ -155,6 +115,3 @@ export const Seachbar = ({ onSubmit }) => {
 
 export default Seachbar;
 
-// Seachbar.prototype = {
-//   query: PropTypes.string,
-// };

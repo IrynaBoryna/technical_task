@@ -21,7 +21,7 @@ export const OneCar = ({
   rentalConditions,
   engineSize,
   onClick,
-  favorite,
+  favorite
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -40,7 +40,7 @@ export const OneCar = ({
     <li key={id}>
       <div className={css.card__box}>
         <img src={img} alt="car" className={css.card__img} width="280px" />
-        <Heart className={css[variant()]} onClick={onClick} />
+           <Heart className={css[variant()]} onClick={onClick} />
         <div className={css.title__box}>
           <div className={css.card__title}>
             <p>{make}</p>

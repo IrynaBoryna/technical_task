@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Catalog } from './catalog/catalog';
 import { Home } from './home/home';
 import { Favorites } from './favorites/favorites';
@@ -40,6 +41,7 @@ export const App = () => {
 
   useEffect(() => {
     if (page > 5) {
+       Notify.success('You have viewed all cars...');
       return;
     }
     if (page > 1 && page < 5) {
@@ -65,46 +67,25 @@ export const App = () => {
   useEffect(() => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites]);
+   
 
   const addDeletFavorite = id => {
     const favorCar = cars.find(car => car.id === id);
+    const index = cars.indexOf(favorCar);
 
     if (favorCar.favorite === true) {
-      favorites.filter(favorite => favorite.id !== id);
-      favorCar.favorite = false;
+      setFavorites(favorites.filter(favorite => favorite.id !== id));
     }
-    favorCar.favorite = true;
+    favorCar.favorite = !favorCar.favorite;
+    cars.splice(index, 1, favorCar);  
     setFavorites(prevFavorites => [...prevFavorites, { ...favorCar }]);
-
-    setCars({...favorCar});
-
-    console.log(id);
-    // console.log(cars[id])
-    // if (cars.car[id].favorite === true) {
-    //   favorites.filter(favorite => favorite.id !== id);
-    // return  cars.car[id].favorite === false;
-    // }
-    // if (
-    //   favorites.find(favorite => favorite.id === id) &&
-    //   cars.find(car => car.id === id)
-    // ) {
-    //     // cars[id].favorite = false;
-    //    favorites.filter(favorite => favorite.id !== id);
-    // }
-    // else
-    // {
-    //   const favorCar = cars.find(car => car.id === id);
-    //   favorCar.favorite = true;
-    //  setCars(prevCars => [...prevCars, { ...favorCar }]);
-    //   setFavorites(prevFavorites => [...prevFavorites, { ...favorCar }])
-    // }
-    // }
   };
 
   const onLoadMore = () => {
     setPage(prevPage => prevPage + 1);
   };
 
+  
   return (
     <div>
       <Routes>
@@ -127,7 +108,7 @@ export const App = () => {
             element={
               <Favorites
                 favorites={favorites}
-                addFavorite={addDeletFavorite}
+                addDeletFavorite={addDeletFavorite}
                 onLoadMore={onLoadMore}
               />
             }
