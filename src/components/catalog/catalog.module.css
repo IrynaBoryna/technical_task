@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px 40px;
+}
+
+.catalog {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-basis: calc((100% - 29px * 3) / 4);
+  gap: 29px;
+}
+.card__box {
+  position: relative;
+  display: flex;
+  width: calc((100% - 29px * 3) / 4);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+.button {
+  color: var(--accent-color);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  background-color: transparent;
+  text-decoration-line: underline;
+  box-shadow: none;
+  margin-top: 20px;
+}
+
+.button:hover,
+.button:focus {
+  color: var(--accent-background-color);
+  background-color: transparent;
+}

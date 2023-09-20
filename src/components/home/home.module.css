@@ -1,0 +1,32 @@
+.home__title {
+  color: #ffffff;
+  font-weight: 700;
+  /* text-transform: uppercase; */
+  font-family: "PT+Serif";
+  font-style: italic;
+  font-size: 44px;
+  line-height: 1.36;
+}
+
+.home__message {
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.36;
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+.home__overlay {
+  max-width: 2000px;
+  height: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background-size: cover;
+  background-image: linear-gradient(to right, rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
+    url("../icons/backgraund-image.jpg");
+}

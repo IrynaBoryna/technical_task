@@ -1,0 +1,30 @@
+.container {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 3px solid var(--accent-color);
+}
+
+.list {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.navLink {
+  color: var(--accent-color);
+  font-weight: 500;
+  font-size: 30px;
+  margin: 20px 40px;
+  text-decoration: none;
+}
+.navLink:active {
+  color: var(--accent-nav-color);
+  text-decoration: underline;
+}
